@@ -1,5 +1,7 @@
 package com.example.manuel.palindromtester;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,8 +12,29 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    MainActivity ma;
+
+    @Before
+    public void setUp() {
+        ma = new MainActivity();
+    }
+
+    @After
+    public void cleanUp() {
+        ma = null;
+    }
+
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void isPalindromTest_true() {
+        //only lower case letters
+        assertEquals(true, ma.isPalindrom("radar"));
+
+        //leading upper case letter
+        assertEquals(true, ma.isPalindrom("Radar"));
+    }
+
+    @Test
+    public void isPalindromTest_false() {
+        assertEquals(false, ma.isPalindrom("Testing"));
     }
 }

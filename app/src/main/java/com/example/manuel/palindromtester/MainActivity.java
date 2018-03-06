@@ -31,22 +31,24 @@ public class MainActivity extends AppCompatActivity {
         inputString = (EditText) findViewById(R.id.inputString);
         resultView = (TextView) findViewById(R.id.resultView);
 
+        String outputMessage;
+        resultView.setTextColor(Color.RED);
+
         if(inputString.getText().toString().isEmpty()) {
-            resultView.setTextColor(Color.RED);
-            resultView.setText("Please input a string!");
+            outputMessage = "Field is empty!\nPlease input a string!";
         } else if(inputString.getText().toString().trim().length() == 0) {
-            resultView.setTextColor(Color.RED);
-            resultView.setText("Field was filled with only white spaces!\nPlease input valid string.");
+            outputMessage = "Field contains only white spaces!\nPlease input valid string.";
         } else if (inputString.getText().toString().length() < 5) {
-            resultView.setTextColor(Color.RED);
-            resultView.setText("String must contain a minimum of 5 characters!");
+            outputMessage = "String must contain a minimum of 5 characters!";
         } else if(isPalindrom(inputString.getText().toString())) {
             resultView.setTextColor(Color.GREEN);
-            resultView.setText("It is a Palindrom!");
+            outputMessage = "It is a Palindrom!";
         } else {
-            resultView.setTextColor(Color.RED);
-            resultView.setText("It is not a Palindrom!");
+            outputMessage = "It is not a Palindrom!";
         }
+
+        resultView.setText(outputMessage);
+        inputString.selectAll();
     }
 
     public boolean isPalindrom(String s) {
